@@ -1,0 +1,26 @@
+- name: Network setup
+  hosts: all
+  become: true
+  tasks:
+    - name: install net-tools
+      apt:
+        name: net-tools
+        state: present
+    - name: apt update
+      apt: 
+        update_cache: yes
+    - name: apt upgrade
+      apt:
+        upgrade: dist
+    - name: Find NICs MAC
+      debug:
+        msg: " interface {{ item }}'s MAC is {{ ansible_facts[item]['macaddress']|default(None) }}"
+      with_items:
+        - "{{ ansible_interfaces }}"
+    - name: Get mac addresses of all interfaces except local
+      debug:
+        msg: "{{ ansible_interfaces | difference(['lo']) | map('regex_replace', '^(.*)$', 'ansible_\\1' ) | map('extract', hostvars[inventory_hostname], 'macaddress')  | list }}"
+ 
+
+
+#    - name: enable network boot (pre-requisite: bios setup must be done)

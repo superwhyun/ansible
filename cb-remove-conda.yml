@@ -1,0 +1,7 @@
+- name: remove conda3 installation
+  hosts: all
+  tasks:
+    - name: remove folder
+      file:
+        state: absent
+        path: /home/whyun/anaconda3

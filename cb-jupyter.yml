@@ -1,0 +1,5 @@
+- hosts: all
+  roles:
+    - role: andrewrothstein.jupyter-profile
+      jupyter_profile_name: fucking profile
+      jupyter_profile_environment: my-jupyter-profile-environment.yml

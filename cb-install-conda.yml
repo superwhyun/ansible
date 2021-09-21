@@ -1,0 +1,12 @@
+- name: install conda3
+  hosts: all
+  tasks:
+    - name: copy installation file
+      copy:
+        src: ./files/Anaconda3-2021.05-Linux-x86_64.sh
+        dest: /home/whyun/files
+        force: no
+    - name: start install
+      shell: /bin/sh /home/whyun/files/Anaconda3-2021.05-Linux-x86_64.sh -b
+    - name: initialize
+      shell: source anaconda3/bin/activate; conda init

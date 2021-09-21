@@ -8,7 +8,7 @@ $ source .source
 
 2. edit ./etc/hosts 
 
-same syntax with '/etc/ansible/hosts'
+- same syntax with '/etc/ansible/hosts'
 
 
 ## Usage
@@ -24,6 +24,9 @@ $ anp cb-install-conda.yml
 $ anp cb-remove-conda.yml
 ```
 
+### Chrome 
+
+TBD
 
 ### Tensorflow
 

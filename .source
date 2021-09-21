@@ -1,1 +1,2 @@
 alias anp="ansible-playbook -i ./etc/hosts"
+alias github="git add .; git commit -m "."; git push"

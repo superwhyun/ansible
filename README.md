@@ -1,13 +1,14 @@
 
 ## Enviroment setup
 
-1. alias
+1. Aliasing for simplifying commands
 ```
 $ source .source
 ```
 
-2. edit hosts file in ./etc
+2. edit ./etc/hosts 
 
+same syntax with '/etc/ansible/hosts'
 
 
 ## Usage
@@ -22,7 +23,6 @@ $ anp cb-install-conda.yml
 ```
 $ anp cb-remove-conda.yml
 ```
-
 
 
 

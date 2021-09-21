@@ -25,11 +25,29 @@ $ anp cb-remove-conda.yml
 ```
 
 
+### Tensorflow
+
+TBD
+
+### PyTorch
+
+TBD
+
+### Kubernetes
+
+TBD
+
+### HP2P
+
+TBD
+
+
+
 
 ## Usefule links
 
-[Ansible modules list](https://docs.ansible.com/ansible/2.8/modules/list_of_all_modules.html)
-[Ansible galaxy](https://galaxy.ansible.com/home)
+- [Ansible modules list](https://docs.ansible.com/ansible/2.8/modules/list_of_all_modules.html)
+- [Ansible galaxy](https://galaxy.ansible.com/home)
 
 
 

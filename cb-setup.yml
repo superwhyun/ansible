@@ -1,3 +1,15 @@
-- name: setup new linux machine
-  tasks:
+- name: group ping test
+  - hosts: all
+    tasks:
+      - name: ping all
+        ping:
+#  - hosts: k8s-master-nodes
+#    tasks:
+#      - name: ping to master
+#        ping:
+#  - hosts: k8s-master-workers
+#    tasks:
+#      - name: ping to workers
+#        ping:
+#
     

@@ -1,0 +1,90 @@
+############ ############ ############ ############ ############ ############
+# https://gist.github.com/lutangar/65bff40dc61d8c48c3eb8ab179d21d11
+############ ############ ############ ############ ############ ############
+
+
+- name: Add apt-key for docker
+  apt_key:
+    url: https://download.docker.com/linux/ubuntu/gpg
+    state: present
+
+- name: Update the `apt` package index
+  apt:
+    update_cache: yes
+
+- name: Install packages to allow apt to use a repository over HTTPS
+  package:
+    name: "{{ item }}"
+    state: latest
+  with_items:
+    - apt-transport-https
+    - curl
+    - software-properties-common
+
+- name: Install python packages
+  package:
+    name: "{{ item }}"
+    state: latest
+  with_items:
+    - python3-pip
+
+# easy_install이 더 이상 python-setuptools에 포함되지 않음.
+#- name: Install `easy_install` to install `pip`
+#  package:
+#    name: python-setuptools
+#    state: present
+#
+#- name: Install `pip` to install `docker-py`
+#  easy_install:
+#    name: pip
+#    state: latest
+
+- name: Install `docker-py` for the Ansible Docker module
+  pip:
+    name: "{{ item }}"
+  with_items:
+    - docker-py
+#    - docker-compose
+
+#
+# 여기는 조금 고쳐야 한다. 민트 리눅스의 경우 ubuntu와 동일한 repository를 써야 하는데,
+# CE에서는 이걸 지원하지 않음. 그래서 ubuntu, focal을 따라가도록 해야 함.
+# TODO: 바꾸고자 하는 부분은 ansible_distribution의 값에 따라 조정되도록 자동화하는 것임.
+#
+- name: Add Docker’s official GPG key
+  apt_key:
+#    url: "https://download.docker.com/linux/{{ ansible_distribution | lower }}/gpg"
+    url: "https://download.docker.com/linux/{{ distro_name | lower }}/gpg"
+    state: present
+  vars:
+#    distro_name: "{{ 'ubuntu' if ansible_distribution=='linux mint' else  ansible_distribution }}"
+    distro_name: 'ubuntu'
+
+- name: Register distribution *short* code name
+  shell: lsb_release -cs
+  register: lsb_release
+
+# TODO: 여기도 마찬가지
+- name: Set up the stable repository
+  apt_repository:
+#    repo: "deb [arch=amd64] https://download.docker.com/linux/{{ ansible_distribution | lower }} {{ ansible_distribution_release | lower }} stable"
+    repo: "deb [arch=amd64] https://download.docker.com/linux/{{ distro_name | lower }} {{ distro_release | lower }} stable"
+    state: present
+  vars:
+#    distro_name: "{{ 'ubuntu' if ansible_distribution=='linux mint' else  ansible_distribution }}"
+    distro_name: 'ubuntu'
+    distro_release: 'focal'
+
+- name: Update the `apt` package index
+  apt:
+    update_cache: yes
+
+- name: Install Docker CE
+  package:
+    name: docker-ce
+    state: present
+
+- name: Verify that Docker CE is installed correctly by running the hello-world image
+  command: docker run hello-world
+  register: command_result
+  failed_when: "'Hello from Docker!' not in command_result.stdout"

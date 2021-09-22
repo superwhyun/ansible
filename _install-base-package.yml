@@ -1,0 +1,9 @@
+- apt:
+    name: "{{ packages }}"
+  vars:
+    packages:
+      - apt-transport-https 
+      - curl
+      - ca-certificates
+      - gnupg-agent
+      - software-properties-common

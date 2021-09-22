@@ -1,0 +1,11 @@
+- name: install nvidia driver # include 하는 파일에서 name이 사용되었더라도 문제 안됨.
+#  ping:
+  hosts: nvidia_gpu
+  become: true
+  roles:
+    - role: nvidia.nvidia_driver
+      nvidia_driver_ubuntu_branch: 470
+#      nvidia_driver_ubuntu_packages:
+#        - "nvidia-headless-470-server"
+#        - "nvidia-utils-470"
+  

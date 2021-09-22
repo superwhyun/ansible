@@ -4,6 +4,7 @@
   tasks:
     - name: install base packages
       include: _install-base-package.yml
+
     - name: install docker CE
       include: _install-docker-ce.yml
 
@@ -11,7 +12,6 @@
       debug: msg="This will run on master "
       # 'group_names'는 시스템에서 지원하는 변수임
       when: "'k8smasters' in group_names" 
-
 
     - name: install packages for workers
       debug: msg="This will run on worker"

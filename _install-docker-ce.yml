@@ -84,6 +84,15 @@
     name: docker-ce
     state: present
 
+- name: Install Docker CE CLI and Containerd.io
+  package:
+    name: "{{ item }}"
+    state: latest
+  with_items:
+    - docker-ce-cli
+    - containerd.io
+
+
 - name: Verify that Docker CE is installed correctly by running the hello-world image
   command: docker run hello-world
   register: command_result

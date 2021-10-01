@@ -1,0 +1,23 @@
+- name: Chrome Install
+  hosts: all
+  become: true
+  tasks:
+  - name: Add apt-key for google
+    apt_key:
+      url: https://dl-ssl.google.com/linux/linux_signing_key.pub
+      state: present
+
+  - name: Set up the stable repository
+    apt_repository:
+      repo: "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main"
+      state: present
+
+  - apt:
+      name: google-chrome-stable
+      state: present
+
+  - name: Remove repository
+    apt_repository:
+      repo: "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main"
+      state: absent
+

@@ -1,0 +1,17 @@
+- name: Configuration for nvidia video card
+  hosts: nvidia_gpu
+  gather_facts: no
+  become: true
+  tasks:
+    - name: nvidia-xconfig
+      shell: sudo nvidia-xconfig -a --cool-bits=28
+    - copy:
+        src: ./files/cuda_11.4.2_470.57.02_linux.run
+        dest: /home/whyun/cuda_11.4.2_470.57.02_linux.run
+        force: no
+    - name: Make it executable
+      shell: chmod +x /home/whyun/cuda_11.4.2_470.57.02_linux.run
+    - name: Install Cuda Toolkit 11.4
+      shell: sudo /home/whyun/cuda_11.4.2_470.57.02_linux.run --silent --toolkit --samples
+
+

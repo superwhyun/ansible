@@ -1,0 +1,12 @@
+- name: Gather CPU info
+  hosts: all
+  become: true
+  tasks:
+    - name: Query information
+      shell: lscpu |grep "Model name"
+      register: result
+
+    - name: Print results
+      debug: 
+        msg:
+          -  "CPU information is '{{ result.stdout_lines }}'"

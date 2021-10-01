@@ -1,0 +1,14 @@
+- name: Network setup
+  hosts: nvidia_gpu
+  become: true
+  tasks:
+    - name: install nvidia utils
+      apt:
+        name: "{{ packages }}"
+      vars:
+        packages:
+          - nvidia-settings
+    - name: execute nvidia-xconfig for controll specific parameters
+      shell: nvidia-xconifg -a --cool-bits=28
+
+

@@ -1,0 +1,12 @@
+- name: Mount file systems
+  hosts: all
+  become: true
+  tasks:
+          #  - name: Make mounting point
+          #    shell: mkdir /media/ramdisk
+
+  - name: Unmount ramdisk
+    mount:
+      path: /media/ramdisk
+      state: unmounted
+

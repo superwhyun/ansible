@@ -1,0 +1,12 @@
+- name: Gather motherboard info
+  hosts: all
+  become: true
+  tasks:
+    - name: Query information
+      shell: "sudo dmidecode |grep -A3 '^Base Board Information'"
+      register: result
+
+    - name: Print results
+      debug: 
+        msg:
+          -  "Board information is '{{ result.stdout_lines }}'"

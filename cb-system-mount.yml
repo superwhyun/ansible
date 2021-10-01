@@ -1,0 +1,11 @@
+- name: Mount file systems
+  hosts: all
+  become: true
+  tasks:
+  - name: Make mounting point
+    shell: mkdir /media/ramdisk
+    ignore_errors: true
+
+  - name: Mount ramdisk
+    shell:  sudo mount -t tmpfs -o size=512M tmpfs /media/ramdisk
+

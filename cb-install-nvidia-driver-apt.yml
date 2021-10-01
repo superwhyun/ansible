@@ -1,0 +1,15 @@
+- name: install nvidia driver 
+  hosts: nvidia_gpu
+  become: true
+
+  tasks:
+    - name: Install nvidia 470 driver
+      apt_repository:
+        repo: ppa:graphics-drivers/ppa
+    - apt:
+        update-cache: yes
+    - name: Installing NVIDIA Driver
+      apt:
+        name: nvidia-driver-470
+        #    - name: Rebooting 
+        #      reboot:

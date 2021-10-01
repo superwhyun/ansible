@@ -1,0 +1,13 @@
+- name: Configuration for nvidia video card
+  hosts: nvidia_gpu
+  become: true
+  tasks:
+    - name: nvidia-xconfig
+      shell: sudo nvidia-xconfig -a --cool-bits=28
+    - copy:
+        src: ./files/10-nvidia.conf
+        dest: /usr/share/X11/xorg.conf.d/10-nvidia.conf
+        force: no
+    - name: Reboot
+      reboot:
+

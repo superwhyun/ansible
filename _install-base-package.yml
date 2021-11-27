@@ -7,3 +7,4 @@
       - ca-certificates
       - gnupg-agent
       - software-properties-common
+      - vnstat

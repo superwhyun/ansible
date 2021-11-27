@@ -1,0 +1,9 @@
+---
+- name: Install network utils
+  become: yes
+  become_user: root
+  hosts: all
+  tasks: 
+    - name: install vnstat
+      apt: name=vnstat state=present
+

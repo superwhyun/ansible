@@ -1,0 +1,13 @@
+- name: VNC Install and Setup
+  hosts: all
+  become: true
+  tasks:
+    - name: install tigervnc
+      apt:
+        name: "{{ packages }}"
+      vars:
+        packages:
+          - tigervnc-standalone-server 
+          - tigervnc-xorg-extension
+
+

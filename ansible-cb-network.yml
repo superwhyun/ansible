@@ -6,4 +6,6 @@
   tasks: 
     - name: install vnstat
       apt: name=vnstat state=present
+    - name: install nethogs
+      apt: name=nethogs state=present
 

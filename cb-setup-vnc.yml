@@ -9,5 +9,17 @@
         packages:
           - tigervnc-standalone-server 
           - tigervnc-xorg-extension
-
+    - name: copy shell script files
+      copy:
+        src: ./files/mybin/
+        dest: /home/whyun/mybin
+        recursive: yes
+        owner: whyun
+        group: whyun
+        force: yes
+        mode: 0755
+    - name: start vnc-server
+      become: yes
+      become_user: whyun
+      shell: /bin/sh /home/whyun/mybin/_restart_vnc.sh
 

@@ -7,17 +7,14 @@ k8s-worker-node2
 k8s-worker-node3
 k8s-worker-node4
 k8s-worker-node5
-k8s-worker-node6
-k8s-worker-node7
 k8s-worker-node8
 k8s-worker-node9
-k8s-worker-node10
 k8s-worker-node11
-k8s-worker-node12
 k8s-worker-node13
 k8s-worker-node14
 k8s-worker-node15
 k8s-worker-node16
+lake
 
 [nvidia_gpu]
 k8s-worker-node1
@@ -25,13 +22,9 @@ k8s-worker-node2
 k8s-worker-node3
 k8s-worker-node4
 k8s-worker-node5
-k8s-worker-node6
-k8s-worker-node7
 k8s-worker-node8
 k8s-worker-node9
-k8s-worker-node10
 k8s-worker-node11
-k8s-worker-node12
 k8s-worker-node13
 k8s-worker-node14
 k8s-worker-node15

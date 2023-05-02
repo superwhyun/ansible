@@ -1,6 +1,5 @@
 - name: Update and Upgrade
   hosts: all
-  #  serial: 1
   gather_facts: false
   become: true
   tasks:
@@ -9,4 +8,3 @@
         update_cache: yes
     - name: apt upgrade
       apt:
-        upgrade: dist
